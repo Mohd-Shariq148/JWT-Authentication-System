@@ -1,0 +1,26 @@
+-->npm install mongoose express jwt dotenv
+---> app.js (server basic)
+---> models(connection.js,userschema.js)
+---> utils(tokenUtils.js)
+---> controllers(authController.js)
+---> middleware(authMiddleware.js)
+---> routes(authRoutes.js)
+node app.js
+
+curl
+
+register user
+curl -X POST http://localhost:5000/api/auth/register -H "Content-Type: application/json" -d '{"username": "testuser", "password": "password123"}'
+2.login user || at the time of login it will give a token
+curl -X POST http://localhost:5000/api/auth/login -H "Content-Type: application/json" -d '{"username": "testuser", "password": "password123"}'
+
+{
+"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTg0NWI5N2UxYzI4ZDMxZWRjMWViYiIsImlhdCI6MTcxNzA2MTEwMywiZXhwIjoxNzE3MDY0NzAzfQ.KD-FMJH6OS1QZpDxe5Fj4FVGb0anjFlOmSjvNTTy_SI"
+}
+
+get me || it will require the token which generated above
+curl -X GET http://localhost:5000/api/auth/me -H "Authorization: Bearer YOUR_JWT_TOKEN"
+4.logout a user
+curl -X POST http://localhost:5000/api/auth/logout -H "Authorization: Bearer YOUR_JWT_TOKEN"
+
+registeruser --> login user --> get user --> logout user
